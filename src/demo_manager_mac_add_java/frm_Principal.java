@@ -21,6 +21,10 @@ int xx;
     public frm_Principal() {
         initComponents();
          
+        
+        statut.addItem("Activé");
+        statut.addItem("Desactivé");
+        statut.select(0);
     }
 
     void recupererMac() {
@@ -98,7 +102,7 @@ int xx;
 
         button1.setBackground(new java.awt.Color(11, 181, 217));
         button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setLabel("Upload Files");
+        button1.setLabel("Mettre à jour");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 51, 0));
@@ -219,9 +223,9 @@ int xx;
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setText("Manager Adresses Macs Java Mysql");
 
-        lbl_option1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lbl_option1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_option1.setForeground(new java.awt.Color(11, 181, 217));
-        lbl_option1.setText("KeepToo");
+        lbl_option1.setText("Demo");
         lbl_option1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_option1MouseClicked(evt);
