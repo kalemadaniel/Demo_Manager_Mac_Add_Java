@@ -7,6 +7,14 @@ package classes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -14,15 +22,103 @@ import java.sql.DriverManager;
  */
 public class clsAdresses {
     
-    
+    private String adress;
+    private String desi_eqpmt;
+    private int id_adresse;
+    private String statut;
     
     public static Connection ConnectToDB() throws Exception {
       //Registering the Driver
       DriverManager.registerDriver(new com.mysql.jdbc.Driver());
       //Getting the connection
-      String mysqlUrl = "jdbc:mysql://localhost/bd_json_msyql";
+      String mysqlUrl = "jdbc:mysql://localhost/bd_Adresse_Mac";
       java.sql.Connection con = DriverManager.getConnection(mysqlUrl, "root", "MQ4k4z22MhB6vD8GvsrY87du75KiNW");
       return (Connection) con;
    }
+
+    /**
+     * @return the adress
+     */
+    public String getAdress() {
+        return adress;
+    }
+
+    /**
+     * @param adress the adress to set
+     */
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    /**
+     * @return the desi_eqpmt
+     */
+    public String getDesi_eqpmt() {
+        return desi_eqpmt;
+    }
+
+    /**
+     * @param desi_eqpmt the desi_eqpmt to set
+     */
+    public void setDesi_eqpmt(String desi_eqpmt) {
+        this.desi_eqpmt = desi_eqpmt;
+    }
+
+    /**
+     * @return the id_adresse
+     */
+    public int getId_adresse() {
+        return id_adresse;
+    }
+
+    /**
+     * @param id_adresse the id_adresse to set
+     */
+    public void setId_adresse(int id_adresse) {
+        this.id_adresse = id_adresse;
+    }
+
+    /**
+     * @return the statut
+     */
+    public String getStatut() {
+        return statut;
+    }
+
+    /**
+     * @param statut the statut to set
+     */
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+    
+    
+    public void insertdata(clsAdresses add){
+        try {
+            Connection con = ConnectToDB();
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO tb_adresses_mac (`desi_eqpmt`, `adress`, `statut`) values (?,?,?)");
+            pstmt.setString(1, add.getDesi_eqpmt());
+            pstmt.setString(2, add.getAdress());
+            pstmt.setString(3, add.getStatut());
+            pstmt.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(clsAdresses.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+   
+   public void chargement(JTable tbl) throws SQLException {
+        try {
+            Connection con = ConnectToDB();
+            PreparedStatement st = con.prepareStatement("SELECT * FROM `tb_adresses_mac`");
+            ResultSet rs = st.executeQuery();
+            tbl.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+        } catch (Exception ex) {
+            Logger.getLogger(clsAdresses.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
     
 }

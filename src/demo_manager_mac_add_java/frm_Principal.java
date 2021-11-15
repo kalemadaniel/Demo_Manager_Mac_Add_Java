@@ -5,8 +5,12 @@
  */
 package demo_manager_mac_add_java;
 
+import classes.clsAdresses;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,6 +19,7 @@ import java.net.NetworkInterface;
 public class frm_Principal extends javax.swing.JFrame {
 int xy;
 int xx;
+clsAdresses add=new clsAdresses();
     /**
      * Creates new form frm_Principal
      */
@@ -70,6 +75,7 @@ int xx;
         lbl_option2 = new javax.swing.JLabel();
         txt_equipement = new javax.swing.JTextField();
         txt_Adress_mac = new javax.swing.JTextField();
+        lblid = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -104,6 +110,11 @@ int xx;
         button1.setBackground(new java.awt.Color(11, 181, 217));
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setLabel("Mettre à jour");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 51, 0));
@@ -159,8 +170,10 @@ int xx;
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(46, 46, 46)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(statut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(statut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(lblid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(32, 32, 32)
                                         .addComponent(jLabel10))))))
@@ -179,7 +192,9 @@ int xx;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(indicator, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(lblid, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_equipement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -309,6 +324,26 @@ int xx;
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_option2MouseClicked
 
+    void chargement(){
+        try {
+                add.chargement(jTable1);
+            } catch (SQLException ex) {
+                Logger.getLogger(frm_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+        if(lblid.getText().equals("")){
+            add.setDesi_eqpmt(txt_equipement.getText());
+            add.setStatut(statut.getSelectedItem().toString());
+            add.setAdress(txt_Adress_mac.getText());
+            add.insertdata(add);
+            chargement();
+        }else{
+            
+        }
+    }//GEN-LAST:event_button1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -360,6 +395,7 @@ int xx;
     private javax.swing.JLabel lbl_option;
     private javax.swing.JLabel lbl_option1;
     private javax.swing.JLabel lbl_option2;
+    private javax.swing.JLabel lblid;
     private java.awt.Choice statut;
     private javax.swing.JTextField txt_Adress_mac;
     private javax.swing.JTextField txt_equipement;
