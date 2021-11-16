@@ -26,6 +26,8 @@ clsAdresses add=new clsAdresses();
     public frm_Principal() {
         initComponents();
          
+        //charger la table des adresses qui sont dans la base des donnees
+        chargement();
         
         statut.addItem("Activé");
         statut.addItem("Desactivé");
