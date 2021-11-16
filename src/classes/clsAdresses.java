@@ -109,7 +109,7 @@ public class clsAdresses {
    public void chargement(JTable tbl) throws SQLException {
         try {
             Connection con = ConnectToDB();
-            PreparedStatement st = con.prepareStatement("SELECT * FROM `tb_adresses_mac`");
+            PreparedStatement st = con.prepareStatement("SELECT `id_adresse` AS ID, `desi_eqpmt` AS EQUIPEMENT, `adress` AS AD_MAC, `statut` AS STATUT FROM `tb_adresses_mac`");
             ResultSet rs = st.executeQuery();
             tbl.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {

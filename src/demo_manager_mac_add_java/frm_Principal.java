@@ -32,6 +32,8 @@ clsAdresses add=new clsAdresses();
         statut.addItem("Activé");
         statut.addItem("Desactivé");
         statut.select(0);
+        
+        this.setLocationRelativeTo(null);
     }
 
     void recupererMac() {
