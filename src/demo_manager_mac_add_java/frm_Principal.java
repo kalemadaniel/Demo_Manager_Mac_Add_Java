@@ -11,39 +11,41 @@ import java.net.NetworkInterface;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ulb-Kalema
  */
 public class frm_Principal extends javax.swing.JFrame {
-int xy;
-int xx;
-clsAdresses add=new clsAdresses();
+
+    int xy;
+    int xx;
+    clsAdresses add = new clsAdresses();
+
     /**
      * Creates new form frm_Principal
      */
     public frm_Principal() {
         initComponents();
-         
+
         //charger la table des adresses qui sont dans la base des donnees
         chargement();
-        
+
         cmb_statut.addItem("Activé");
         cmb_statut.addItem("Desactivé");
         cmb_statut.select(0);
-        
+
         this.setLocationRelativeTo(null);
         lblid.setVisible(false);
     }
-    
-    void effacer(){
+
+    void effacer() {
         txt_Adress_mac.setText("");
         txt_equipement.setText("");
         lblid.setText("");
         cmb_statut.select(0);
     }
-    
 
     void recupererMac() {
         InetAddress ip;
@@ -335,7 +337,7 @@ clsAdresses add=new clsAdresses();
 
     private void lbl_optionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_optionMouseClicked
         // TODO add your handling code here:
-        indicator.setLocation(390,70);
+        indicator.setLocation(390, 70);
     }//GEN-LAST:event_lbl_optionMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -351,7 +353,7 @@ clsAdresses add=new clsAdresses();
         // TODO add your handling code here:
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        this.setLocation(x-xx,y-xy);
+        this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
@@ -364,30 +366,36 @@ clsAdresses add=new clsAdresses();
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_option2MouseClicked
 
-    void chargement(){
+    void chargement() {
         try {
-                add.chargement(jTable1);
-            } catch (SQLException ex) {
-                Logger.getLogger(frm_Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            add.chargement(jTable1);
+        } catch (SQLException ex) {
+            Logger.getLogger(frm_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        
-        if(lblid.getText().equals("")){
-            add.setDesi_eqpmt(txt_equipement.getText());
-            add.setStatut(cmb_statut.getSelectedItem().toString());
-            add.setAdress(txt_Adress_mac.getText());
-            add.insertdata(add);
-            chargement();
-        }else{
-            add.setDesi_eqpmt(txt_equipement.getText());
-            add.setStatut(cmb_statut.getSelectedItem().toString());
-            add.setAdress(txt_Adress_mac.getText());
-            add.setId_adresse(Integer.parseInt(lblid.getText()));
-            add.updatedata(add);
-            chargement();
+        if (txt_Adress_mac.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Remplissez l'adresse Mac S'il vous plait");
+        } else if (txt_equipement.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Remplissez le nom de l'équipement S'il vous plait");
+        } else {
+            if (lblid.getText().equals("")) {
+                add.setDesi_eqpmt(txt_equipement.getText());
+                add.setStatut(cmb_statut.getSelectedItem().toString());
+                add.setAdress(txt_Adress_mac.getText());
+                add.insertdata(add);
+                chargement();
+            } else {
+                add.setDesi_eqpmt(txt_equipement.getText());
+                add.setStatut(cmb_statut.getSelectedItem().toString());
+                add.setAdress(txt_Adress_mac.getText());
+                add.setId_adresse(Integer.parseInt(lblid.getText()));
+                add.updatedata(add);
+                chargement();
+            }
         }
+
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -397,7 +405,7 @@ clsAdresses add=new clsAdresses();
         String equi = (jTable1.getModel().getValueAt(row, 1).toString());
         String ad_mac = (jTable1.getModel().getValueAt(row, 2).toString());
         String statut = (jTable1.getModel().getValueAt(row, 3).toString());
-        
+
         // Afficher les valeurs de la liste dans les controles du formulaire 
         txt_Adress_mac.setText(ad_mac);
         txt_equipement.setText(equi);
@@ -405,7 +413,7 @@ clsAdresses add=new clsAdresses();
         lblid.setText(id);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    
+
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
         effacer();
