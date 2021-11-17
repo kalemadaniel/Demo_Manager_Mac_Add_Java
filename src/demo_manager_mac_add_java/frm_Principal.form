@@ -78,7 +78,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                      <Component id="statut" min="-2" pref="137" max="-2" attributes="0"/>
+                                      <Component id="cmb_statut" min="-2" pref="137" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -129,7 +129,7 @@
                                       <Component id="button1" alignment="2" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="statut" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmb_statut" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -189,7 +189,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="java.awt.Choice" name="statut">
+        <Component class="java.awt.Choice" name="cmb_statut">
         </Component>
         <Component class="java.awt.Button" name="button1">
           <Properties>

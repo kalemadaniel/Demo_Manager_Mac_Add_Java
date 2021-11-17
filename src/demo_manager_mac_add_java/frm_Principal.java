@@ -29,9 +29,9 @@ clsAdresses add=new clsAdresses();
         //charger la table des adresses qui sont dans la base des donnees
         chargement();
         
-        statut.addItem("Activé");
-        statut.addItem("Desactivé");
-        statut.select(0);
+        cmb_statut.addItem("Activé");
+        cmb_statut.addItem("Desactivé");
+        cmb_statut.select(0);
         
         this.setLocationRelativeTo(null);
     }
@@ -71,7 +71,7 @@ clsAdresses add=new clsAdresses();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         indicator = new javax.swing.JSeparator();
-        statut = new java.awt.Choice();
+        cmb_statut = new java.awt.Choice();
         button1 = new java.awt.Button();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -178,7 +178,7 @@ clsAdresses add=new clsAdresses();
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel10)
-                                    .addComponent(statut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(cmb_statut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +217,7 @@ clsAdresses add=new clsAdresses();
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                     .addComponent(jLabel10)
                                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(statut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmb_statut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbl_option2)
                         .addGap(12, 12, 12)
@@ -361,7 +361,7 @@ clsAdresses add=new clsAdresses();
         // TODO add your handling code here:
         if(lblid.getText().equals("")){
             add.setDesi_eqpmt(txt_equipement.getText());
-            add.setStatut(statut.getSelectedItem().toString());
+            add.setStatut(cmb_statut.getSelectedItem().toString());
             add.setAdress(txt_Adress_mac.getText());
             add.insertdata(add);
             chargement();
@@ -374,6 +374,9 @@ clsAdresses add=new clsAdresses();
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
         String id = (jTable1.getModel().getValueAt(row, 0).toString());
+        String equi = (jTable1.getModel().getValueAt(row, 0).toString());
+        String ad_mac = (jTable1.getModel().getValueAt(row, 0).toString());
+        String statut = (jTable1.getModel().getValueAt(row, 0).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -413,6 +416,7 @@ clsAdresses add=new clsAdresses();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
+    private java.awt.Choice cmb_statut;
     private javax.swing.JSeparator indicator;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -429,7 +433,6 @@ clsAdresses add=new clsAdresses();
     private javax.swing.JLabel lbl_option1;
     private javax.swing.JLabel lbl_option2;
     private javax.swing.JLabel lblid;
-    private java.awt.Choice statut;
     private javax.swing.JTextField txt_Adress_mac;
     private javax.swing.JTextField txt_equipement;
     // End of variables declaration//GEN-END:variables
