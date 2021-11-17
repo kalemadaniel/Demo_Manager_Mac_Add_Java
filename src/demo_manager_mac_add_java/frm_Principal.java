@@ -22,6 +22,7 @@ public class frm_Principal extends javax.swing.JFrame {
     int xy;
     int xx;
     clsAdresses add = new clsAdresses();
+    int i=0;
 
     /**
      * Creates new form frm_Principal
@@ -38,6 +39,9 @@ public class frm_Principal extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         lblid.setVisible(false);
+        
+        //pour cacher le test
+        cacherTest();
     }
 
     void effacer() {
@@ -45,6 +49,21 @@ public class frm_Principal extends javax.swing.JFrame {
         txt_equipement.setText("");
         lblid.setText("");
         cmb_statut.select(0);
+    }
+    
+    void afficherTest(){
+        txt_ipadress.setVisible(true);
+        txt_adressemac.setVisible(true);
+        jButton1.setVisible(true);
+        recupererMac();
+    }
+    
+    void cacherTest(){
+        txt_ipadress.setVisible(false);
+        txt_adressemac.setVisible(false);
+        jButton1.setVisible(false);
+        txt_ipadress.setText("");
+        txt_adressemac.setText("");
     }
 
     void recupererMac() {
@@ -457,7 +476,14 @@ public class frm_Principal extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        recupererMac();
+        if(i==0){
+            i=1;
+            afficherTest();
+        }else{
+            i=0;
+            cacherTest();
+        }
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
