@@ -104,7 +104,7 @@ clsAdresses add=new clsAdresses();
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Category");
+        jLabel6.setText("Adresse Mac");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Privacy");
@@ -371,12 +371,17 @@ clsAdresses add=new clsAdresses();
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+        // Recuperer les valeurs dans la liste
         int row = jTable1.getSelectedRow();
         String id = (jTable1.getModel().getValueAt(row, 0).toString());
-        String equi = (jTable1.getModel().getValueAt(row, 0).toString());
-        String ad_mac = (jTable1.getModel().getValueAt(row, 0).toString());
-        String statut = (jTable1.getModel().getValueAt(row, 0).toString());
+        String equi = (jTable1.getModel().getValueAt(row, 1).toString());
+        String ad_mac = (jTable1.getModel().getValueAt(row, 2).toString());
+        String statut = (jTable1.getModel().getValueAt(row, 3).toString());
+        
+        // Afficher les valeurs de la liste dans les controles du formulaire 
+        txt_Adress_mac.setText(ad_mac);
+        txt_equipement.setText(equi);
+        cmb_statut.select(statut);
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
