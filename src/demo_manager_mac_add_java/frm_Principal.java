@@ -34,7 +34,16 @@ clsAdresses add=new clsAdresses();
         cmb_statut.select(0);
         
         this.setLocationRelativeTo(null);
+        lblid.setVisible(false);
     }
+    
+    void effacer(){
+        txt_Adress_mac.setText("");
+        txt_equipement.setText("");
+        lblid.setText("");
+        cmb_statut.select(0);
+    }
+    
 
     void recupererMac() {
         InetAddress ip;
@@ -124,6 +133,11 @@ clsAdresses add=new clsAdresses();
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 51, 0));
         jLabel10.setText("Cancel");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -359,6 +373,7 @@ clsAdresses add=new clsAdresses();
     }
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
+        
         if(lblid.getText().equals("")){
             add.setDesi_eqpmt(txt_equipement.getText());
             add.setStatut(cmb_statut.getSelectedItem().toString());
@@ -366,7 +381,12 @@ clsAdresses add=new clsAdresses();
             add.insertdata(add);
             chargement();
         }else{
-            
+            add.setDesi_eqpmt(txt_equipement.getText());
+            add.setStatut(cmb_statut.getSelectedItem().toString());
+            add.setAdress(txt_Adress_mac.getText());
+            add.setId_adresse(Integer.parseInt(lblid.getText()));
+            add.updatedata(add);
+            chargement();
         }
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -382,7 +402,14 @@ clsAdresses add=new clsAdresses();
         txt_Adress_mac.setText(ad_mac);
         txt_equipement.setText(equi);
         cmb_statut.select(statut);
+        lblid.setText(id);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        effacer();
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments

@@ -92,7 +92,7 @@ public class clsAdresses {
         this.statut = statut;
     }
     
-    
+    //La procedure pour inserer les donnees dans la base 
     public void insertdata(clsAdresses add){
         try {
             Connection con = ConnectToDB();
@@ -100,6 +100,21 @@ public class clsAdresses {
             pstmt.setString(1, add.getDesi_eqpmt());
             pstmt.setString(2, add.getAdress());
             pstmt.setString(3, add.getStatut());
+            pstmt.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(clsAdresses.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+    
+     //La procedure pour modifier les donnees dans la base 
+    public void updatedata(clsAdresses add){
+        try {
+            Connection con = ConnectToDB();
+            PreparedStatement pstmt = con.prepareStatement("UPDATE tb_adresses_mac SET `desi_eqpmt`=?, `adress`=?, `statut`=? WHERE id_adresse=?");
+            pstmt.setString(1, add.getDesi_eqpmt());
+            pstmt.setString(2, add.getAdress());
+            pstmt.setString(3, add.getStatut());
+            pstmt.setInt(4, add.getId_adresse());
             pstmt.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(clsAdresses.class.getName()).log(Level.SEVERE, null, ex);
