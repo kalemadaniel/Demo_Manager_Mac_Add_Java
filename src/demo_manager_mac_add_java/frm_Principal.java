@@ -51,17 +51,17 @@ public class frm_Principal extends javax.swing.JFrame {
         InetAddress ip;
         try {
             ip = InetAddress.getLocalHost();
-            //System.out.println("Adresse IP : " + ip.getHostAddress());
-//            txt_ipadress.setText(""+ip.getHostAddress());
+            System.out.println("Adresse IP : " + ip.getHostAddress());
+            txt_ipadress.setText(""+ip.getHostAddress());
             NetworkInterface network = NetworkInterface.getByInetAddress(ip);
             byte[] mac = network.getHardwareAddress();
-//            System.out.print("Adresse MAC : ");
+            System.out.print("Adresse MAC : ");
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < mac.length; i++) {
                 sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
             }
-            //System.out.println(sb.toString());
-//            txt_adressemac.setText(sb.toString());
+            System.out.println(sb.toString());
+            txt_adressemac.setText(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,6 +139,7 @@ public class frm_Principal extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 51, 0));
         jLabel10.setText("Cancel");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -175,8 +176,19 @@ public class frm_Principal extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Tester avec l'adresse Mac de ce Pc ");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jButton1.setText("Verifier");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -438,6 +450,15 @@ public class frm_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         effacer();
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        recupererMac();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
