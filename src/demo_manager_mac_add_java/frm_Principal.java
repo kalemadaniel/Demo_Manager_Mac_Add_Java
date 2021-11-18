@@ -419,6 +419,11 @@ public class frm_Principal extends javax.swing.JFrame {
 
     void chargement() {
         try {
+            cmb_statut.select(0);
+            txt_Adress_mac.setText("");
+            txt_adressemac.setText("");
+            txt_equipement.setText("");
+            lblid.setText("");
             add.chargement(jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(frm_Principal.class.getName()).log(Level.SEVERE, null, ex);
