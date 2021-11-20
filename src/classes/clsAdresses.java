@@ -139,7 +139,7 @@ public class clsAdresses {
         int val = 0;
         try {
             Connection con = ConnectToDB();
-            PreparedStatement st = con.prepareStatement("SELECT * FROM `tb_adresses_mac` WHERE `adress` = '" + nom + "' AND `statut`= 'Activé' ");
+            PreparedStatement st = con.prepareStatement("SELECT * FROM `tb_adresses_mac` WHERE `adress` = '" + nom + "'  AND `statut`= 'Activé'");
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 val=1;
