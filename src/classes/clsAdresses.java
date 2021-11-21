@@ -132,8 +132,22 @@ public class clsAdresses {
         } catch (Exception ex) {
             Logger.getLogger(clsAdresses.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
+   
+   public int testerDroit(String nom) throws SQLException {
+        int val = 0;
+        try {
+            Connection con = ConnectToDB();
+            PreparedStatement st = con.prepareStatement("SELECT * FROM `tb_adresses_mac` WHERE `adress` = '" + nom + "' AND `statut`= 'Activé' ");
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                val=1;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error" + e.getMessage());
+        }
+        return val;
+    }
     
 }
