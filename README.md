@@ -42,12 +42,15 @@ CREATE TABLE tb_adresses_mac
 ### La solution interface graphique
 Tu peux mettre à jour ta liste des adresses et en les désactivant si possible (ex : Quand l’utilisateur va en congé).
 
+![img1](https://user-images.githubusercontent.com/51014164/142858217-07379e3e-645f-45e3-8939-316d2e5d903f.JPG)
 
 Juste dans le bas j’ai mis une partie qui me permet de vérifier si mon équipement a bien accès à la base des données. Voici quelques exemples illustratifs.
 Test 1
+![img2](https://user-images.githubusercontent.com/51014164/142858291-282093a4-a3a9-4f02-829c-1e3755347cb7.JPG)
 
 Test 2
 
+![img3](https://user-images.githubusercontent.com/51014164/142858330-045fe90f-bc68-45f3-8039-b36e2821c02e.JPG)
 
 ## Pour les contributions
 
