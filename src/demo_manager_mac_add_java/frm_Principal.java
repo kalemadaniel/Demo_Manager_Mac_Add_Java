@@ -30,13 +30,14 @@ public class frm_Principal extends javax.swing.JFrame {
     public frm_Principal() {
         initComponents();
 
-        //charger la table des adresses qui sont dans la base des donnees
-        chargement();
+        
 
         cmb_statut.addItem("Activé");
         cmb_statut.addItem("Desactivé");
-        cmb_statut.select(0);
-
+        
+        //charger la table des adresses qui sont dans la base des donnees
+        chargement();
+        
         this.setLocationRelativeTo(null);
         lblid.setVisible(false);
         
@@ -49,6 +50,7 @@ public class frm_Principal extends javax.swing.JFrame {
         txt_equipement.setText("");
         lblid.setText("");
         cmb_statut.select(0);
+        lblIcones.setVisible(false);
     }
     
     void afficherTest(){
@@ -56,9 +58,11 @@ public class frm_Principal extends javax.swing.JFrame {
         txt_adressemac.setVisible(true);
         jButton1.setVisible(true);
         recupererMac();
+        
     }
     
     void cacherTest(){
+        lblIcones.setVisible(false);
         txt_ipadress.setVisible(false);
         txt_adressemac.setVisible(false);
         jButton1.setVisible(false);
@@ -114,6 +118,7 @@ public class frm_Principal extends javax.swing.JFrame {
         txt_adressemac = new javax.swing.JTextField();
         txt_ipadress = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        lblIcones = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -209,6 +214,8 @@ public class frm_Principal extends javax.swing.JFrame {
             }
         });
 
+        lblIcones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/IconError.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -246,7 +253,8 @@ public class frm_Principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jLabel7)
-                            .addComponent(cmb_statut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmb_statut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIcones, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(83, 83, 83))
         );
         jPanel1Layout.setVerticalGroup(
@@ -288,7 +296,8 @@ public class frm_Principal extends javax.swing.JFrame {
                                 .addComponent(cmb_statut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(66, 66, 66)
                                 .addComponent(jLabel10)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblIcones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -472,7 +481,17 @@ public class frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            lblIcones.setVisible(true);
+            if(add.testerDroit(txt_Adress_mac.getText())==1){
+                lblIcones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pic_success.png")));
+            }else{
+                lblIcones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/IconError.png")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(frm_Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -539,6 +558,7 @@ public class frm_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblIcones;
     private javax.swing.JLabel lbl_option;
     private javax.swing.JLabel lbl_option1;
     private javax.swing.JLabel lbl_option2;
